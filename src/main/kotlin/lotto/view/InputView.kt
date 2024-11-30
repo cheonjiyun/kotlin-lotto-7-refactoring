@@ -1,7 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.controller.validation.NOT_NUMBER
+import lotto.controller.validation.ErrorType
 import lotto.controller.validation.isRangeLottoNumber
 
 class InputView {
@@ -12,8 +12,8 @@ class InputView {
             input.toInt()
             return true
         } catch (e: NumberFormatException) {
-            println(NOT_NUMBER)
-            throw IllegalArgumentException(NOT_NUMBER)
+            println(ErrorType.NOT_NUMBER)
+            throw IllegalArgumentException(ErrorType.NOT_NUMBER.errorMessage)
         }
     }
 
