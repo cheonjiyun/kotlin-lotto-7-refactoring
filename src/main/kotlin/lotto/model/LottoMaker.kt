@@ -1,4 +1,8 @@
-package lotto
+package lotto.model
+
+import lotto.controller.validation.LOTTO_AMOUNT
+import lotto.controller.validation.RandomNumber
+import lotto.view.Output
 
 class LottoMaker {
     private val randomNumber = RandomNumber()

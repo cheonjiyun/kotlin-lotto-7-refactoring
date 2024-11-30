@@ -1,5 +1,8 @@
-package lotto
+package lotto.view
 
+import lotto.controller.validation.MATCH
+import lotto.controller.validation.PRIZE
+import lotto.controller.validation.RANK
 import java.text.DecimalFormat
 
 

@@ -1,5 +1,10 @@
 package lotto
 
+import lotto.model.LottoMaker
+import lotto.model.LottoRound
+import lotto.view.Input
+import lotto.view.Output
+
 val input = Input()
 val output = Output()
 val lottoMaker = LottoMaker()

@@ -1,4 +1,4 @@
-package lotto
+package lotto.controller.validation
 
 const val LOTTO_AMOUNT = 1000
 

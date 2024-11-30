@@ -1,4 +1,4 @@
-package lotto
+package lotto.controller.validation
 
 fun isDuplicationLottoNumbers(lottoNumbers: List<Int>): Boolean {
     val duplicationNumbers = lottoNumbers.filterIndexed { idx, it -> lottoNumbers.indexOf(it) != idx }

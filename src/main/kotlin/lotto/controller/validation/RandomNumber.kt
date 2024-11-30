@@ -1,4 +1,4 @@
-package lotto
+package lotto.controller.validation
 
 import camp.nextstep.edu.missionutils.Randoms
 

@@ -1,4 +1,8 @@
-package lotto
+package lotto.model
+
+import lotto.controller.validation.PRIZE
+import lotto.controller.validation.RANK
+
 class LottoRound(private val lottos: List<Lotto>, private val numbers: List<Int>, private val bonusNumber: Int) {
 
     fun getRankCount(): MutableMap<RANK, Int> {
