@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import lotto.controller.validation.NOT_NUMBER
 import lotto.controller.validation.isRangeLottoNumber
 
-class Input {
+class InputView {
     private fun input(): String = Console.readLine()
 
     private fun checkChangeInt(input: String): Boolean {

@@ -1,22 +1,16 @@
 package lotto
 
+import lotto.controller.LottoController
 import lotto.model.LottoMaker
 import lotto.model.LottoRound
-import lotto.view.Input
-import lotto.view.Output
+import lotto.view.InputView
+import lotto.view.OutputView
 
-val input = Input()
-val output = Output()
+val input = InputView()
+val outputView = OutputView()
 val lottoMaker = LottoMaker()
 
 fun main() {
-    val inputAmount = input.getAmount()
-    val lottos = lottoMaker.makeLottos(inputAmount)
-
-    val inputNumbers = input.getLottoNumbers()
-    val inputBonusNumber = input.getLottoBonusNumbers()
-
-    val lottoRound = LottoRound(lottos, inputNumbers, inputBonusNumber)
-    val ranks = lottoRound.getRankCount()
-    output.printPrize(ranks, lottoRound.getRate(inputAmount))
+    val lottoController = LottoController()
+    lottoController.run()
 }

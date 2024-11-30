@@ -6,7 +6,7 @@ import lotto.controller.validation.RANK
 import java.text.DecimalFormat
 
 
-class Output {
+class OutputView {
 
     fun printLottoNumbers(numbers: MutableList<List<Int>>) {
         println(numbers.size.toString() + LOTTO_COUNT_PRINT)
