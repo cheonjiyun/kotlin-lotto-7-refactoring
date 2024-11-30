@@ -5,6 +5,7 @@ enum class ErrorType(private val message: String){
     DUPLICATION_NUMBER("[ERROR] 로또 번호가 중복입니다"),
     NOT_RANGE_NUMBER("[ERROR] 로또 번호가 유효범위가 아닙니다");
 
+
     val errorMessage: String
         get() = ERROR + message
     companion object {

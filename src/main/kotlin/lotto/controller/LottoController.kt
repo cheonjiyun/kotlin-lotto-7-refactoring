@@ -1,6 +1,7 @@
 package lotto.controller
 
 import lotto.controller.validation.LOTTO_AMOUNT
+import lotto.controller.validation.checkDuplicationLottoAndBonus
 import lotto.util.RandomNumber
 import lotto.model.Lotto
 import lotto.model.LottoRound
@@ -17,6 +18,7 @@ class LottoController(private val inputView: InputView, private val randomNumber
 
         val inputNumbers = inputView.getLottoNumbers()
         val inputBonusNumber = inputView.getLottoBonusNumbers()
+        checkDuplicationLottoAndBonus(inputNumbers, inputBonusNumber)
 
         val lottoRound = LottoRound(lottos, inputNumbers, inputBonusNumber)
         val ranks = lottoRound.getRankCount()

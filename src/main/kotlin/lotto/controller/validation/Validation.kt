@@ -8,6 +8,12 @@ fun isDuplicationLottoNumbers(lottoNumbers: List<Int>): Boolean {
     }
     return true
 }
+
+fun checkDuplicationLottoAndBonus(lottoNumbers: List<Int>, bonusNumber: Int) {
+    require(!lottoNumbers.contains(bonusNumber)) { ErrorType.DUPLICATION_NUMBER }
+}
+
+
 fun isRangeLottoNumber(number: Int): Boolean  {
     if (number < LOTTO_RANGE_FLOOR || number > LOTTO_RANGE_CEIL) {
         println(ErrorType.NOT_RANGE_NUMBER)
