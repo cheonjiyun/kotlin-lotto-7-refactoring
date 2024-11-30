@@ -1,8 +1,9 @@
-package lotto
+package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
+import lotto.controller.validation.*
 
-class Input {
+class InputView {
     private fun input(): String = Console.readLine()
 
     private fun checkChangeInt(input: String): Boolean {
@@ -10,8 +11,8 @@ class Input {
             input.toInt()
             return true
         } catch (e: NumberFormatException) {
-            println(NOT_NUMBER)
-            throw IllegalArgumentException(NOT_NUMBER)
+            println(ErrorType.NOT_NUMBER.errorMessage)
+            throw IllegalArgumentException(ErrorType.NOT_NUMBER.errorMessage)
         }
     }
 
@@ -38,6 +39,7 @@ class Input {
             val lottoNumbers = input().split(',').map { it.toInt() }
 
             try {
+                checkLottoNumbersCount(lottoNumbers)
                 lottoNumbers.forEach {
                     isRangeLottoNumber(it)
                 }
@@ -48,7 +50,7 @@ class Input {
         }
     }
 
-    fun getLottoBonusNumbers(): Int {
+    fun getLottoBonusNumbers(inputNumbers : List<Int>): Int {
         println(REQUEST_BONUS_NUMBERS_MESSAGE)
 
         while (true) {
@@ -57,6 +59,8 @@ class Input {
             try {
                 checkChangeInt(input)
                 isRangeLottoNumber(input.toInt())
+                checkDuplicationLottoAndBonus(inputNumbers, input.toInt())
+
                 return input.toInt()
 
             } catch (e: IllegalArgumentException) {
@@ -66,7 +70,7 @@ class Input {
     }
 
     companion object {
-        private const val REQUEST_AMOUNT_MESSAGE = "구입금액을 입력해 주세요."
+        private const val REQUEST_AMOUNT_MESSAGE = "구입금액을 입력해 주세요. ${LOTTO_AMOUNT}원단위로 살 수 있습니다 \n 예) $LOTTO_AMOUNT"
         private const val REQUEST_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요."
         private const val REQUEST_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요."
     }

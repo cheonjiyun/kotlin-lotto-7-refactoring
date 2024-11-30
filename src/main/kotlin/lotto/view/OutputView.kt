@@ -1,25 +1,26 @@
-package lotto
+package lotto.view
 
+import lotto.controller.validation.Rank
 import java.text.DecimalFormat
 
 
-class Output {
+class OutputView {
 
     fun printLottoNumbers(numbers: MutableList<List<Int>>) {
         println(numbers.size.toString() + LOTTO_COUNT_PRINT)
         numbers.forEach { println(it) }
     }
 
-    private fun matchPrint(rank : RANK, matchNumber: Int){
+    private fun matchPrint(rank : Rank, matchNumber: Int){
         val moneyFormat = DecimalFormat("#,###")
-        println("${MATCH[rank]}개 일치${if(rank == RANK.SECOND) ", 보너스 볼 일치" else ""} (${moneyFormat.format(PRIZE[rank])}원) - ${matchNumber}개")
+        println("${rank.getCountOfMatch()}개 일치${if(rank == Rank.SECOND) ", 보너스 볼 일치" else ""} (${moneyFormat.format(rank.getWinningMoney())}원) - ${matchNumber}개")
     }
-    fun printPrize(ranks : MutableMap<RANK, Int>, rate : Double) {
+    fun printPrize(ranks : MutableMap<Rank, Int>, rate : Double) {
         println(PRIZE_PRINT)
         println(LINE_PRINT)
-        val rateFormat = DecimalFormat("#0.0")
+        val rateFormat = DecimalFormat("#,##0.0")
         for (rank in ranks){
-            if(rank.key != RANK.OTHERS) matchPrint(rank.key, rank.value)
+            if(rank.key != Rank.OTHERS) matchPrint(rank.key, rank.value)
         }
         println("총 수익률은 ${rateFormat.format(rate)}%입니다.")
     }

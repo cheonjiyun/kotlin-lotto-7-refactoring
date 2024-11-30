@@ -1,14 +1,17 @@
-package lotto
+package lotto.model
+
+import lotto.controller.validation.Rank
+
 class LottoRound(private val lottos: List<Lotto>, private val numbers: List<Int>, private val bonusNumber: Int) {
 
-    fun getRankCount(): MutableMap<RANK, Int> {
+    fun getRankCount(): MutableMap<Rank, Int> {
         val rankCount = mutableMapOf(
-            RANK.OTHERS to 0,
-            RANK.FIFTH to 0,
-            RANK.FOURTH to 0,
-            RANK.THIRD to 0,
-            RANK.SECOND to 0,
-            RANK.FIRST to 0
+            Rank.OTHERS to 0,
+            Rank.FIFTH to 0,
+            Rank.FOURTH to 0,
+            Rank.THIRD to 0,
+            Rank.SECOND to 0,
+            Rank.FIRST to 0
         )
 
         lottos.forEach { lotto ->
@@ -19,10 +22,10 @@ class LottoRound(private val lottos: List<Lotto>, private val numbers: List<Int>
         return rankCount
     }
 
-    private fun getTotalPrize(rankCount: MutableMap<RANK, Int>): Int {
+    private fun getTotalPrize(rankCount: MutableMap<Rank, Int>): Int {
         var totalPrize = 0
         rankCount.forEach {
-            totalPrize += PRIZE[it.key]!!.times((it.value))
+            totalPrize += it.key.getWinningMoney().times((it.value))
         }
         return totalPrize
     }
