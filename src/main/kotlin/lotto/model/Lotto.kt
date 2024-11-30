@@ -10,16 +10,16 @@ class Lotto(private val numbers: List<Int>) {
         numbers.forEach { require(isRangeLottoNumber(it)) { NOT_RANGE_NUMBER } }
     }
 
-    private fun switchRank(matchNumberSize: Int, isBonusNumberMatch: Boolean): RANK {
-        if (matchNumberSize == 6) return RANK.FIRST
-        if (matchNumberSize == 5 && isBonusNumberMatch) return RANK.SECOND
-        if (matchNumberSize == 5) return RANK.THIRD
-        if (matchNumberSize == 4) return RANK.FOURTH
-        if (matchNumberSize == 3) return RANK.FIFTH
-        return RANK.OTHERS
+    private fun switchRank(matchNumberSize: Int, isBonusNumberMatch: Boolean): Rank {
+        if (matchNumberSize == 6) return Rank.FIRST
+        if (matchNumberSize == 5 && isBonusNumberMatch) return Rank.SECOND
+        if (matchNumberSize == 5) return Rank.THIRD
+        if (matchNumberSize == 4) return Rank.FOURTH
+        if (matchNumberSize == 3) return Rank.FIFTH
+        return Rank.OTHERS
     }
 
-    fun getRank(lottoNumbers: List<Int>, bonusNumber: Int): RANK {
+    fun getRank(lottoNumbers: List<Int>, bonusNumber: Int): Rank {
         val count = numbers.filter { number -> lottoNumbers.any { it == number } }
         val isBonusNumberMatch = numbers.any { it == bonusNumber }
 
