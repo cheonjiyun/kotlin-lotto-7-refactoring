@@ -1,22 +1,22 @@
 package lotto.controller
 
 import lotto.controller.validation.LOTTO_AMOUNT
-import lotto.controller.validation.RandomNumber
-import lotto.input
-import lotto.lottoMaker
+import lotto.util.RandomNumber
 import lotto.model.Lotto
 import lotto.model.LottoRound
 import lotto.outputView
+import lotto.view.InputView
 
-class LottoController {
-    private val randomNumber = RandomNumber()
+class LottoController(private val inputView: InputView, private val randomNumber: RandomNumber) {
 
     fun run() {
-        val inputAmount = input.getAmount()
-        val lottos = makeLottos(inputAmount)
+        val inputAmount = inputView.getAmount()
+        val lottoNumbers = makeLottoNumbers(inputAmount)
+        outputView.printLottoNumbers(lottoNumbers)
+        val lottos = makeLottos(lottoNumbers)
 
-        val inputNumbers = input.getLottoNumbers()
-        val inputBonusNumber = input.getLottoBonusNumbers()
+        val inputNumbers = inputView.getLottoNumbers()
+        val inputBonusNumber = inputView.getLottoBonusNumbers()
 
         val lottoRound = LottoRound(lottos, inputNumbers, inputBonusNumber)
         val ranks = lottoRound.getRankCount()
@@ -27,11 +27,12 @@ class LottoController {
         return inputAmount.div(LOTTO_AMOUNT)
     }
 
-    fun makeLottos(inputAmount : Int): List<Lotto> {
+    private fun makeLottoNumbers(inputAmount : Int): MutableList<List<Int>> {
         val lottoCount = getLottoCount(inputAmount)
-        val lottoNumbers = randomNumber.randomLottos(lottoCount)
+        return randomNumber.randomLottos(lottoCount)
+    }
 
-        outputView.printLottoNumbers(lottoNumbers)
+    private fun makeLottos(lottoNumbers: MutableList<List<Int>>): List<Lotto> {
         return lottoNumbers.map { Lotto(it) }
     }
 }
