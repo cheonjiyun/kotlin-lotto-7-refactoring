@@ -1,5 +1,13 @@
 package lotto.controller.validation
 
+
+fun checkLottoNumbersCount(lottoNumbers: List<Int>) {
+    if(!lottoNumbers.size.equals(LOTTO_COUNT)){
+        println(ErrorType.LOTTO_NUMBER_SIZE.errorMessage)
+        throw IllegalArgumentException(ErrorType.LOTTO_NUMBER_SIZE.errorMessage)
+    }
+}
+
 fun isDuplicationLottoNumbers(lottoNumbers: List<Int>): Boolean {
     val duplicationNumbers = lottoNumbers.filterIndexed { idx, it -> lottoNumbers.indexOf(it) != idx }
     if (duplicationNumbers.isNotEmpty()) {

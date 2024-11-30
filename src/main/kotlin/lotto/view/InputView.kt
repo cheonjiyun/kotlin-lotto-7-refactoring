@@ -1,10 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
-import lotto.controller.validation.ErrorType
-import lotto.controller.validation.LOTTO_AMOUNT
-import lotto.controller.validation.checkDuplicationLottoAndBonus
-import lotto.controller.validation.isRangeLottoNumber
+import lotto.controller.validation.*
 
 class InputView {
     private fun input(): String = Console.readLine()
@@ -42,6 +39,7 @@ class InputView {
             val lottoNumbers = input().split(',').map { it.toInt() }
 
             try {
+                checkLottoNumbersCount(lottoNumbers)
                 lottoNumbers.forEach {
                     isRangeLottoNumber(it)
                 }
