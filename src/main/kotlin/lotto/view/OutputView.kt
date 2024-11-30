@@ -18,7 +18,7 @@ class OutputView {
     fun printPrize(ranks : MutableMap<Rank, Int>, rate : Double) {
         println(PRIZE_PRINT)
         println(LINE_PRINT)
-        val rateFormat = DecimalFormat("#0.0")
+        val rateFormat = DecimalFormat("#,##0.0")
         for (rank in ranks){
             if(rank.key != Rank.OTHERS) matchPrint(rank.key, rank.value)
         }

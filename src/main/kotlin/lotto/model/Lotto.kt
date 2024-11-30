@@ -6,8 +6,8 @@ import lotto.controller.validation.*
 class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == 6) { "[ERROR] 로또 번호는 6개여야 합니다." }
-        require( isDuplicationLottoNumbers(numbers)) { DUPLICATION_NUMBER }
-        numbers.forEach { require(isRangeLottoNumber(it)) { NOT_RANGE_NUMBER } }
+        require( isDuplicationLottoNumbers(numbers)) { ErrorType.DUPLICATION_NUMBER }
+        numbers.forEach { require(isRangeLottoNumber(it)) { ErrorType.NOT_RANGE_NUMBER } }
     }
 
     private fun switchRank(matchNumberSize: Int, isBonusNumberMatch: Boolean): Rank {
