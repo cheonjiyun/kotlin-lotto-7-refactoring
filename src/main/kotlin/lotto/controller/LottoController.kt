@@ -17,8 +17,7 @@ class LottoController(private val inputView: InputView, private val randomNumber
         val lottos = makeLottos(lottoNumbers)
 
         val inputNumbers = inputView.getLottoNumbers()
-        val inputBonusNumber = inputView.getLottoBonusNumbers()
-        checkDuplicationLottoAndBonus(inputNumbers, inputBonusNumber)
+        val inputBonusNumber = inputView.getLottoBonusNumbers(inputNumbers)
 
         val lottoRound = LottoRound(lottos, inputNumbers, inputBonusNumber)
         val ranks = lottoRound.getRankCount()

@@ -3,6 +3,7 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console
 import lotto.controller.validation.ErrorType
 import lotto.controller.validation.LOTTO_AMOUNT
+import lotto.controller.validation.checkDuplicationLottoAndBonus
 import lotto.controller.validation.isRangeLottoNumber
 
 class InputView {
@@ -51,7 +52,7 @@ class InputView {
         }
     }
 
-    fun getLottoBonusNumbers(): Int {
+    fun getLottoBonusNumbers(inputNumbers : List<Int>): Int {
         println(REQUEST_BONUS_NUMBERS_MESSAGE)
 
         while (true) {
@@ -60,6 +61,8 @@ class InputView {
             try {
                 checkChangeInt(input)
                 isRangeLottoNumber(input.toInt())
+                checkDuplicationLottoAndBonus(inputNumbers, input.toInt())
+
                 return input.toInt()
 
             } catch (e: IllegalArgumentException) {
