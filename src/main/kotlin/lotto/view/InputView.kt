@@ -2,6 +2,7 @@ package lotto.view
 
 import camp.nextstep.edu.missionutils.Console
 import lotto.controller.validation.ErrorType
+import lotto.controller.validation.LOTTO_AMOUNT
 import lotto.controller.validation.isRangeLottoNumber
 
 class InputView {
@@ -12,7 +13,7 @@ class InputView {
             input.toInt()
             return true
         } catch (e: NumberFormatException) {
-            println(ErrorType.NOT_NUMBER)
+            println(ErrorType.NOT_NUMBER.errorMessage)
             throw IllegalArgumentException(ErrorType.NOT_NUMBER.errorMessage)
         }
     }
@@ -68,7 +69,7 @@ class InputView {
     }
 
     companion object {
-        private const val REQUEST_AMOUNT_MESSAGE = "구입금액을 입력해 주세요. 예) 1000"
+        private const val REQUEST_AMOUNT_MESSAGE = "구입금액을 입력해 주세요. ${LOTTO_AMOUNT}원단위로 살 수 있습니다 \n 예) $LOTTO_AMOUNT"
         private const val REQUEST_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요."
         private const val REQUEST_BONUS_NUMBERS_MESSAGE = "보너스 번호를 입력해 주세요."
     }
